@@ -1,0 +1,133 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+<style>
+    /* Style global */
+    body {
+        font-family: Arial, sans-serif;
+        color: #333;
+        background-color: #f9f9f9;
+        margin: 20px;
+    }
+
+    h1 {
+        color: #2c3e50;
+        font-size: 24px;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    /* Style de la liste des livres */
+    ul.book-list {
+        list-style-type: none;
+        padding: 0;
+        margin-bottom: 20px;
+    }
+
+    ul.book-list li {
+        background-color: #ecf0f1;
+        padding: 10px;
+        margin: 5px 0;
+        border-radius: 5px;
+        font-size: 16px;
+    }
+
+    /* Style du lien d'ajout de livre */
+    .add-book-link {
+        display: inline-block;
+        padding: 8px 12px;
+        margin-bottom: 20px;
+        background-color: #3498db;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+    }
+
+    .add-book-link:hover {
+        background-color: #2980b9;
+    }
+
+    /* Style du tableau des livres */
+    table.book-table {
+        width: 100%;
+        border-collapse: collapse;
+        background-color: #ffffff;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    table.book-table th, table.book-table td {
+        padding: 12px 15px;
+        border-bottom: 1px solid #ddd;
+        text-align: left;
+    }
+
+    table.book-table th {
+        background-color: #2c3e50;
+        color: #fff;
+        font-weight: bold;
+    }
+
+    table.book-table tr:hover {
+        background-color: #f2f2f2;
+    }
+
+    /* Style des liens d'actions */
+    .action-links a {
+        margin-right: 10px;
+        text-decoration: none;
+        color: #3498db;
+        font-weight: bold;
+        transition: color 0.3s;
+    }
+
+    .action-links a:hover {
+        color: #2980b9;
+    }
+
+    .no-books {
+        font-style: italic;
+        color: #888;
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+    <h1>Liste des livres</h1>
+    <ul class="book-list">
+        {% for livre in livres %}
+            <li>{{ livre.Titre }} - {{ livre.Auteur }} ({{ livre.DateDuPub|date('Y-m-d') }})</li>
+        {% endfor %}
+    </ul>
+
+    <a href="{{ path('app_livre_ajouter') }}" class="add-book-link">Ajouter un livre</a>
+
+    {% if livres is not empty %}
+        <table class="book-table">
+            <thead>
+                <tr>
+                    <th>Titre</th>
+                    <th>Auteur</th>
+                    <th>Date de Publication</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for livre in livres %}
+                    <tr>
+                        <td>{{ livre.Titre }}</td>
+                        <td>{{ livre.Auteur }}</td>
+                        <td>{{ livre.DateDuPub|date('Y-m-d') }}</td>
+                        <td class="action-links">
+                            <a href="{{ path('app_livre_supprimer', {id: livre.id}) }}">Supprimer</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p class="no-books">Aucun livre n'est disponible pour l'instant.</p>
+    {% endif %}
+{% endblock %}
