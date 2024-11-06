@@ -11,3 +11,21 @@ This project is designed as a modular, easy-to-extend template, making it suitab
    - Role-Based Access Control: Define user roles and manage permissions to protect specific parts of your application.
    - Customizable and Extensible: Built to be modified according to specific project needs.
 SymfonyAuthFlow is perfect for developers wanting a robust foundation to manage user authentication with Symfony.
+
+## Useful Symfony Commands:
+## Create User Entity: Generate the user entity with default fields.
+  - php bin/console make:user
+## Generate Registration and Login Forms: Generate controllers and forms for user registration and login.
+  - php bin/console make:registration-form
+  - php bin/console make:auth
+## Migrations: Set up and execute migrations for the user and roles tables.
+  - php bin/console make:migration
+  - php bin/console doctrine:migrations:migrate
+## Role-Based Access Control: Manage role hierarchy and security configurations in security.yaml.
+security:
+  role_hierarchy:
+    ROLE_ADMIN: ROLE_USER
+## Clear Cache: Clear the cache to ensure the latest changes are loaded.
+  - php bin/console cache:clear
+## Run the Symfony Server: Start the Symfony development server to test your application.
+  - symfony server:start
