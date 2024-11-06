@@ -14,7 +14,7 @@ SymfonyAuthFlow is perfect for developers wanting a robust foundation to manage 
 
 ## Useful Symfony Commands:
 ## Create User Entity: Generate the user entity with default fields.
-  - php bin/console make:user
+  -- php bin/console make:user
 ## Generate Registration and Login Forms: Generate controllers and forms for user registration and login.
   - php bin/console make:registration-form
   - php bin/console make:auth
